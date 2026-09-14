@@ -1,6 +1,1 @@
-{
-  "name": "titan-installer",
-  "private": true,
-  "workspaces": ["apps/*"],
-  "scripts": {"build":"pnpm exec nx run titan-installer:build","test":"pnpm exec nx run titan-installer:test"}
-}
+{"name":"titan-installer-root","private":true,"workspaces":["apps/*","libs/*"]}
