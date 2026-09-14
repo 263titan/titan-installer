@@ -1,0 +1,12 @@
+[Flatpak Metadata]
+Name=titan-printsync
+DisplayName=Titan PrintSync
+Summary=Print production suite
+Runtime=org.freedesktop.Platform
+RuntimeVersion=24.08
+Sdk=org.freedesktop.Sdk
+Command=titan-printsync
+
+[Session Bus Policies]
+org.freedesktop.portal.OpenURI=allow
+org.freedesktop.portal.RequestBackground=allow

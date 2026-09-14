@@ -1,0 +1,17 @@
+# TitanPrintSync
+packageIdentifier: titan.printsync
+packageVersion: "0.1.0"
+packageName: Titan PrintSync
+publisher: 263titan
+url: https://github.com/263titan/titan-installer
+commands:
+- titan-printsync
+installerLocale: en-US
+installers:
+- arch: x64
+  platform: windows
+  installerType: exe
+  installerUrl: https://github.com/263titan/titan-installer/releases/latest/download/Titan-Production-Suite-setup-x.x.x.exe
+  installerSwitches:
+    silent: /S
+    installLocation: $programFiles\Titan Production Suite

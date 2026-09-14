@@ -1,0 +1,12 @@
+{
+  "name": "titan-installer",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/titan-installer/src",
+  "projectType": "application",
+  "tags": ["scope:app", "type:electron"],
+  "targets": {
+    "build": { "executor": "@nx/js:tsc", "options": { "outputPath": "dist/apps/titan-installer", "main": "apps/titan-installer/src/index.ts", "tsConfig": "apps/titan-installer/tsconfig.json" } },
+    "test": { "executor": "@nx/jest:jest", "options": { "jestConfig": "apps/titan-installer/jest.config.ts", "passWithNoTests": true } },
+    "lint": { "executor": "@nx/eslint:lint" }
+  }
+}
