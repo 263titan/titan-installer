@@ -6,3 +6,6 @@ shamefullyHoist: false
 allowBuilds:
   "@parcel/watcher": true
   unrs-resolver: true
+  "electron-winstaller": true
+  esbuild: true
+  nx: true
