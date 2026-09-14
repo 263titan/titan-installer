@@ -1,0 +1,26 @@
+{
+  "name": "ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/src",
+  "projectType": "library",
+  "tags": ["scope:lib", "type:ui-components"],
+  "targets": {
+    "build": { "executor": "@nx/js:tsc", "options": { "outputPath": "dist/libs/ui", "main": "libs/ui/src/index.ts", "tsConfig": "libs/ui/tsconfig.json" } },
+    "test": { "executor": "@nx/jest:jest", "options": { "jestConfig": "libs/ui/jest.config.ts", "passWithNoTests": true } },
+    "lint": { "executor": "@nx/eslint:lint" },
+    "storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "storybook dev -p 4400 --config-dir libs/ui/.storybook",
+        "cwd": "."
+      }
+    },
+    "build-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "storybook build --config-dir libs/ui/.storybook --output-dir libs/ui/storybook-static",
+        "cwd": "."
+      }
+    }
+  }
+}

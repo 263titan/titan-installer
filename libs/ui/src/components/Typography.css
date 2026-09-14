@@ -1,0 +1,114 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Titan Design System — Base Typography
+   Consumes the --titan-* custom properties emitted from `typographyVariables`.
+   Structural rules are scoped to `.titan-root` (opt-in) so existing app
+   chrome is never clobbered; utility classes are global.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.titan-root {
+  font-family: var(--titan-font-sans);
+  font-size: var(--titan-text-base);
+  font-weight: var(--titan-weight-normal);
+  line-height: var(--titan-leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.titan-root h1, .titan-root h2, .titan-root h3,
+.titan-root h4, .titan-root h5, .titan-root h6 {
+  color: inherit;
+}
+
+/* Heading scale. No margins here — vertical rhythm is owned by the
+   spacing tokens / host app, keeping .titan-root safe to wrap anywhere. */
+.titan-root h1, .titan-h1 {
+  font-size: var(--titan-text-3xl);
+  font-weight: var(--titan-weight-bold);
+  line-height: var(--titan-leading-tight);
+  letter-spacing: var(--titan-tracking-tight);
+}
+
+.titan-root h2, .titan-h2 {
+  font-size: var(--titan-text-2xl);
+  font-weight: var(--titan-weight-semibold);
+  line-height: var(--titan-leading-tight);
+  letter-spacing: var(--titan-tracking-tight);
+}
+
+.titan-root h3, .titan-h3 {
+  font-size: var(--titan-text-xl);
+  font-weight: var(--titan-weight-semibold);
+  line-height: var(--titan-leading-snug);
+}
+
+.titan-root h4, .titan-h4 {
+  font-size: var(--titan-text-lg);
+  font-weight: var(--titan-weight-semibold);
+  line-height: var(--titan-leading-snug);
+}
+
+.titan-root h5, .titan-h5 {
+  font-size: var(--titan-text-md);
+  font-weight: var(--titan-weight-semibold);
+  line-height: var(--titan-leading-normal);
+}
+
+.titan-root h6, .titan-h6 {
+  font-size: var(--titan-text-sm);
+  font-weight: var(--titan-weight-semibold);
+  line-height: var(--titan-leading-normal);
+  letter-spacing: var(--titan-tracking-wide);
+  text-transform: uppercase;
+}
+
+.titan-root p {
+  font-size: var(--titan-text-base);
+  line-height: var(--titan-leading-relaxed);
+}
+
+.titan-root small, .titan-text-xs {
+  font-size: var(--titan-text-xs);
+  line-height: var(--titan-leading-normal);
+}
+
+.titan-root code,
+.titan-root kbd,
+.titan-root samp,
+.titan-mono {
+  font-family: var(--titan-font-mono);
+  font-size: 0.923em; /* ~12px against the 13px base */
+}
+
+.titan-tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+.titan-overline {
+  font-size: var(--titan-text-xs);
+  font-weight: var(--titan-weight-medium);
+  letter-spacing: var(--titan-tracking-widest);
+  text-transform: uppercase;
+}
+
+/* ── Size utilities ──────────────────────────────────────────────────────────── */
+.titan-text-sm  { font-size: var(--titan-text-sm); }
+.titan-text-base{ font-size: var(--titan-text-base); }
+.titan-text-md  { font-size: var(--titan-text-md); }
+.titan-text-lg  { font-size: var(--titan-text-lg); }
+.titan-text-xl  { font-size: var(--titan-text-xl); }
+.titan-text-2xl { font-size: var(--titan-text-2xl); }
+.titan-text-3xl { font-size: var(--titan-text-3xl); }
+
+/* ── Weight utilities ────────────────────────────────────────────────────────── */
+.titan-weight-normal   { font-weight: var(--titan-weight-normal); }
+.titan-weight-medium   { font-weight: var(--titan-weight-medium); }
+.titan-weight-semibold { font-weight: var(--titan-weight-semibold); }
+.titan-weight-bold     { font-weight: var(--titan-weight-bold); }
+
+/* ── Line-height utilities ───────────────────────────────────────────────────── */
+.titan-leading-tight  { line-height: var(--titan-leading-tight); }
+.titan-leading-snug   { line-height: var(--titan-leading-snug); }
+.titan-leading-normal { line-height: var(--titan-leading-normal); }
+.titan-leading-relaxed{ line-height: var(--titan-leading-relaxed); }

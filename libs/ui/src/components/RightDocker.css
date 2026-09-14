@@ -1,0 +1,668 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Titan Right Docker Styles
+   Tabbed dockers: Nesting, Color, Hardware, Spooler, Properties Inspector
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.titan-right-docker {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 0;
+  background: var(--titan-bg-raised, #1e1e1e);
+  border-left: 1px solid var(--titan-border, #333);
+  font-size: 13px;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  position: relative;
+  min-width: 200px;
+  max-width: 600px;
+  overflow: hidden;
+}
+
+.titan-right-docker.collapsed {
+  min-width: 42px;
+  max-width: 42px;
+}
+
+.titan-docker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 32px;
+  padding: 0 8px 0 12px;
+  background: var(--titan-bg-raised, #1e1e1e);
+  border-bottom: 1px solid var(--titan-border, #333);
+}
+
+.titan-docker-header-title {
+  color: var(--titan-text-muted, #888);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.titan-docker-collapse {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--titan-text-muted, #888);
+  cursor: pointer;
+}
+
+.titan-docker-collapse:hover {
+  border-color: var(--titan-border, #333);
+  background: var(--titan-bg-overlay, #2a2a2a);
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-docker-tabs {
+  display: flex;
+  flex: 0 0 auto;
+  min-width: 0;
+  background: var(--titan-bg, #141414);
+  border-bottom: 1px solid var(--titan-border, #333);
+  overflow-x: auto;
+}
+
+.titan-right-docker.collapsed .titan-docker-tabs {
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.titan-docker-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  color: var(--titan-text-muted, #888);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.titan-docker-tab:hover:not(.disabled) {
+  color: var(--titan-text, #e0e0e0);
+  background: var(--titan-bg-overlay, #2a2a2a);
+}
+
+.titan-docker-tab.active {
+  color: var(--titan-brand, #10b981);
+  background: var(--titan-bg-raised, #1e1e1e);
+}
+
+.titan-docker-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--titan-brand, #10b981);
+}
+
+.titan-docker-tab.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.titan-docker-tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.titan-docker-tab-collapsed-label {
+  display: none;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.titan-right-docker.collapsed .titan-docker-tab {
+  width: 40px;
+  min-height: 42px;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.titan-right-docker.collapsed .titan-docker-tab-label,
+.titan-right-docker.collapsed .titan-docker-tab-badge {
+  display: none;
+}
+
+.titan-right-docker.collapsed .titan-docker-tab-icon {
+  display: none;
+}
+
+.titan-right-docker.collapsed .titan-docker-tab-collapsed-label {
+  display: inline;
+}
+
+.titan-right-docker.collapsed .titan-docker-tab.active::after {
+  top: 6px;
+  right: 0;
+  bottom: 6px;
+  left: auto;
+  width: 2px;
+  height: auto;
+}
+
+.titan-docker-tab-badge {
+  background: var(--titan-brand, #10b981);
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.titan-docker-content {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px;
+}
+
+.titan-docker-content > * {
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Docker Panel Styles */
+.titan-docker-panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--titan-bg, #141414);
+  border: 1px solid var(--titan-border, #333);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.titan-docker-panel:last-child {
+  margin-bottom: 0;
+}
+
+.titan-docker-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--titan-bg-overlay, #2a2a2a);
+  border-bottom: 1px solid var(--titan-border, #333);
+}
+
+.titan-docker-panel-collapse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--titan-text-muted, #888);
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+}
+
+.titan-docker-panel-collapse:hover {
+  background: var(--titan-bg, #141414);
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-docker-panel-title {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--titan-text, #e0e0e0);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.titan-docker-panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.titan-docker-panel-body {
+  padding: 12px;
+}
+
+/* Resize Handle */
+.titan-docker-resize-handle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  cursor: col-resize;
+  background: transparent;
+  transition: background 0.15s ease;
+  z-index: 10;
+}
+
+.titan-docker-resize-handle:hover,
+.titan-docker-resize-handle.resizing {
+  background: var(--titan-brand, #10b981);
+}
+
+/* Nesting Docker Styles */
+.titan-nesting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.titan-nesting-row:last-child {
+  margin-bottom: 0;
+}
+
+.titan-nesting-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--titan-text-muted, #888);
+  min-width: 80px;
+}
+
+.titan-nesting-input-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.titan-nesting-input {
+  width: 70px;
+  padding: 4px 8px;
+  background: var(--titan-bg-raised, #1e1e1e);
+  border: 1px solid var(--titan-border, #333);
+  border-radius: 4px;
+  color: var(--titan-text, #e0e0e0);
+  font-size: 12px;
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.titan-nesting-input:focus {
+  outline: none;
+  border-color: var(--titan-brand, #10b981);
+}
+
+.titan-nesting-unit {
+  font-size: 11px;
+  color: var(--titan-text-muted, #888);
+  font-family: 'Consolas', 'Monaco', monospace;
+  min-width: 20px;
+}
+
+.titan-nesting-select {
+  flex: 1;
+  padding: 4px 8px;
+  background: var(--titan-bg-raised, #1e1e1e);
+  border: 1px solid var(--titan-border, #333);
+  border-radius: 4px;
+  color: var(--titan-text, #e0e0e0);
+  font-size: 12px;
+}
+
+.titan-nesting-select:focus {
+  outline: none;
+  border-color: var(--titan-brand, #10b981);
+}
+
+.titan-nesting-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.titan-nesting-radio {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.titan-nesting-radio input {
+  accent-color: var(--titan-brand, #10b981);
+}
+
+.titan-nesting-radio-label {
+  font-size: 11px;
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-nesting-results {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.titan-nesting-result-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.titan-nesting-result-label {
+  font-size: 11px;
+  color: var(--titan-text-muted, #888);
+}
+
+.titan-nesting-progress-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--titan-bg, #141414);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.titan-nesting-progress-fill {
+  height: 100%;
+  background: var(--titan-brand, #10b981);
+  transition: width 0.3s ease;
+}
+
+.titan-nesting-result-value {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--titan-brand, #10b981);
+  font-family: 'Consolas', 'Monaco', monospace;
+  min-width: 50px;
+  text-align: right;
+}
+
+.titan-nesting-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.titan-nesting-btn {
+  padding: 8px 12px;
+  background: var(--titan-bg-overlay, #2a2a2a);
+  border: 1px solid var(--titan-border, #333);
+  border-radius: 4px;
+  color: var(--titan-text, #e0e0e0);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.titan-nesting-btn:hover {
+  background: var(--titan-brand-light, #0d4d3f);
+  border-color: var(--titan-brand, #10b981);
+  color: var(--titan-brand, #10b981);
+}
+
+.titan-nesting-btn.primary {
+  background: var(--titan-brand, #10b981);
+  border-color: var(--titan-brand, #10b981);
+  color: white;
+}
+
+.titan-nesting-btn.primary:hover {
+  background: var(--titan-brand-dark, #0d9668);
+}
+
+/* Color Docker Styles */
+.titan-color-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.titan-color-row:last-child {
+  margin-bottom: 0;
+}
+
+.titan-color-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--titan-text-muted, #888);
+  min-width: 80px;
+}
+
+.titan-color-select {
+  flex: 1;
+  padding: 4px 8px;
+  background: var(--titan-bg-raised, #1e1e1e);
+  border: 1px solid var(--titan-border, #333);
+  border-radius: 4px;
+  color: var(--titan-text, #e0e0e0);
+  font-size: 12px;
+}
+
+.titan-color-select:focus {
+  outline: none;
+  border-color: var(--titan-brand, #10b981);
+}
+
+.titan-color-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.titan-color-badge.certified {
+  background: var(--titan-brand, #10b981);
+  color: white;
+}
+
+.titan-color-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.titan-color-slider-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--titan-text-muted, #888);
+  width: 20px;
+}
+
+.titan-color-slider {
+  flex: 1;
+  height: 4px;
+  background: var(--titan-border, #333);
+  border-radius: 2px;
+  appearance: none;
+  cursor: pointer;
+}
+
+.titan-color-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--titan-brand, #10b981);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.titan-color-number {
+  width: 50px;
+  padding: 4px 8px;
+  background: var(--titan-bg-raised, #1e1e1e);
+  border: 1px solid var(--titan-border, #333);
+  border-radius: 4px;
+  color: var(--titan-text, #e0e0e0);
+  font-size: 12px;
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.titan-color-unit {
+  font-size: 11px;
+  color: var(--titan-text-muted, #888);
+  width: 20px;
+}
+
+.titan-color-toggle-row {
+  margin-bottom: 8px;
+}
+
+.titan-color-toggle-row:last-child {
+  margin-bottom: 0;
+}
+
+.titan-color-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-color-toggle input {
+  accent-color: var(--titan-brand, #10b981);
+  width: 16px;
+  height: 16px;
+}
+
+/* Properties Inspector Styles */
+.titan-properties-docker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.titan-properties-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--titan-text-muted, #888);
+  font-size: 12px;
+}
+
+.titan-prop-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.titan-prop-row:last-child {
+  margin-bottom: 0;
+}
+
+.titan-prop-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--titan-text-muted, #888);
+  min-width: 60px;
+}
+
+.titan-prop-input {
+  width: 60px;
+  padding: 4px 8px;
+  background: var(--titan-bg-raised, #1e1e1e);
+  border: 1px solid var(--titan-border, #333);
+  border-radius: 4px;
+  color: var(--titan-text, #e0e0e0);
+  font-size: 12px;
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.titan-prop-input:focus {
+  outline: none;
+  border-color: var(--titan-brand, #10b981);
+}
+
+.titan-prop-unit {
+  font-size: 11px;
+  color: var(--titan-text-muted, #888);
+  width: 24px;
+}
+
+.titan-prop-slider {
+  flex: 1;
+  height: 4px;
+  background: var(--titan-border, #333);
+  border-radius: 2px;
+  appearance: none;
+  cursor: pointer;
+}
+
+.titan-prop-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--titan-brand, #10b981);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.titan-prop-value {
+  font-size: 11px;
+  color: var(--titan-text, #e0e0e0);
+  font-family: 'Consolas', 'Monaco', monospace;
+  min-width: 40px;
+  text-align: right;
+}
+
+.titan-prop-color {
+  width: 40px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--titan-border, #333);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.titan-prop-color::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+
+.titan-prop-color::-webkit-color-swatch {
+  border-radius: 2px;
+}
+
+/* Scrollbar styling */
+.titan-docker-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.titan-docker-content::-webkit-scrollbar-track {
+  background: var(--titan-bg, #141414);
+}
+
+.titan-docker-content::-webkit-scrollbar-thumb {
+  background: var(--titan-border, #333);
+  border-radius: 4px;
+}
+
+.titan-docker-content::-webkit-scrollbar-thumb:hover {
+  background: var(--titan-text-muted, #555);
+}

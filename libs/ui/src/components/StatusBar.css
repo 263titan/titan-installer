@@ -1,0 +1,276 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Titan Status Bar Styles
+   Widgets: Cursor X/Y, Selection Specs, Active ICC Profile, Buffer Pool %, License Status
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.titan-status-bar {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  background: var(--titan-bg-raised, #1e1e1e);
+  border-top: 1px solid var(--titan-border, #333);
+  font-size: 11px;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  padding: 0 8px;
+  user-select: none;
+}
+
+.titan-status-bar-left,
+.titan-status-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.titan-status-spacer {
+  flex: 1;
+}
+
+.titan-status-widget {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: background-color 0.1s ease;
+}
+
+.titan-status-widget:hover {
+  background: var(--titan-bg-overlay, #2a2a2a);
+}
+
+.titan-status-separator {
+  width: 1px;
+  height: 12px;
+  background: var(--titan-border, #333);
+  margin: 0 2px;
+}
+
+/* Cursor Position Widget */
+.titan-cursor-position {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.titan-cursor-label {
+  color: var(--titan-text-muted, #888);
+  font-weight: 500;
+}
+
+.titan-cursor-value {
+  color: var(--titan-text, #e0e0e0);
+  min-width: 40px;
+  text-align: right;
+}
+
+.titan-cursor-unit {
+  color: var(--titan-text-muted, #888);
+  min-width: 16px;
+}
+
+/* Selection Specs Widget */
+.titan-selection-specs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.titan-selection-empty {
+  color: var(--titan-text-muted, #888);
+  font-style: italic;
+}
+
+.titan-selection-count {
+  color: var(--titan-brand, #10b981);
+  font-weight: 600;
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.titan-selection-label {
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-selection-sep {
+  color: var(--titan-text-muted, #888);
+}
+
+.titan-selection-type {
+  color: var(--titan-text, #e0e0e0);
+  font-weight: 500;
+}
+
+.titan-selection-dim {
+  color: var(--titan-text, #e0e0e0);
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+/* ICC Profile Widget */
+.titan-icc-profile {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.titan-icc-certified {
+  color: var(--titan-brand, #10b981);
+  font-weight: 600;
+}
+
+.titan-icc-name {
+  color: var(--titan-text, #e0e0e0);
+  font-weight: 500;
+}
+
+.titan-icc-sep {
+  color: var(--titan-text-muted, #888);
+}
+
+.titan-icc-intent {
+  color: var(--titan-text-muted, #888);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+/* Buffer Pool Widget */
+.titan-buffer-pool {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.titan-buffer-label {
+  color: var(--titan-text-muted, #888);
+  font-weight: 500;
+}
+
+.titan-buffer-bar {
+  width: 60px;
+  height: 4px;
+  background: var(--titan-bg, #141414);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.titan-buffer-fill {
+  height: 100%;
+  background: var(--titan-brand, #10b981);
+  transition: width 0.3s ease;
+}
+
+.titan-buffer-value {
+  color: var(--titan-text, #e0e0e0);
+  font-family: 'Consolas', 'Monaco', monospace;
+  min-width: 70px;
+}
+
+.titan-buffer-sep {
+  color: var(--titan-text-muted, #888);
+}
+
+.titan-buffer-cache {
+  color: var(--titan-brand, #10b981);
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-weight: 500;
+}
+
+/* License Status Widget */
+.titan-license-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.titan-license-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--titan-bg-raised, #1e1e1e);
+}
+
+.titan-license-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.titan-license-sep {
+  color: var(--titan-text-muted, #888);
+}
+
+.titan-license-tier {
+  color: var(--titan-text, #e0e0e0);
+  font-weight: 500;
+}
+
+.titan-license-expiry {
+  color: var(--titan-text-muted, #888);
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+/* Zoom Widget */
+.titan-zoom-widget {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.titan-zoom-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--titan-text-muted, #888);
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+}
+
+.titan-zoom-btn:hover {
+  background: var(--titan-bg-overlay, #2a2a2a);
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-zoom-value {
+  color: var(--titan-text, #e0e0e0);
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-weight: 500;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Tool Info Widget */
+.titan-tool-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.titan-tool-name {
+  color: var(--titan-text, #e0e0e0);
+  font-weight: 500;
+}
+
+.titan-tool-sep {
+  color: var(--titan-text-muted, #888);
+}
+
+.titan-tool-shortcut {
+  color: var(--titan-brand, #10b981);
+  font-family: 'Consolas', 'Monaco', monospace;
+  background: var(--titan-brand-light, #0d4d3f);
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+.titan-tool-engine {
+  color: var(--titan-text-muted, #888);
+  font-size: 10px;
+  font-style: italic;
+}

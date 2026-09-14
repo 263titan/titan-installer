@@ -1,0 +1,587 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Titan Bottom Panel Styles
+   RIP Spooler Queue, Device Communications Log, Hardware Diagnostics, Engine Telemetry
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.titan-bottom-panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--titan-bg-raised, #1e1e1e);
+  border-top: 1px solid var(--titan-border, #333);
+  font-size: 13px;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  position: relative;
+  min-height: 32px;
+  transition: height 0.15s ease;
+}
+
+.titan-bottom-panel.collapsed {
+  height: 32px !important;
+}
+
+.titan-bottom-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background: var(--titan-bg, #141414);
+  border-bottom: 1px solid var(--titan-border, #333);
+  flex-shrink: 0;
+}
+
+.titan-bottom-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--titan-text-muted, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.titan-bottom-panel-collapse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--titan-text-muted, #888);
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+}
+
+.titan-bottom-panel-collapse:hover {
+  background: var(--titan-bg-overlay, #2a2a2a);
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-bottom-panel-tabs {
+  display: flex;
+  gap: 2px;
+}
+
+.titan-bottom-panel-tab {
+  padding: 4px 12px;
+  background: transparent;
+  border: none;
+  color: var(--titan-text-muted, #888);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.titan-bottom-panel-tab:hover {
+  background: var(--titan-bg-overlay, #2a2a2a);
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-bottom-panel-tab.active {
+  background: var(--titan-brand-light, #0d4d3f);
+  color: var(--titan-brand, #10b981);
+}
+
+.titan-bottom-panel-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.titan-bottom-panel-resize-handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  cursor: row-resize;
+  background: transparent;
+  transition: background 0.15s ease;
+  z-index: 10;
+}
+
+.titan-bottom-panel-resize-handle:hover,
+.titan-bottom-panel-resize-handle.resizing {
+  background: var(--titan-brand, #10b981);
+}
+
+/* Spooler Queue Styles */
+.titan-spooler-queue {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.titan-spooler-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--titan-bg-overlay, #2a2a2a);
+  border-bottom: 1px solid var(--titan-border, #333);
+}
+
+.titan-spooler-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-spooler-count {
+  font-size: 11px;
+  color: var(--titan-text-muted, #888);
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.titan-spooler-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.titan-spooler-job {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  background: var(--titan-bg, #141414);
+  border: 1px solid var(--titan-border, #333);
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.titan-spooler-job:last-child {
+  margin-bottom: 0;
+}
+
+.titan-spooler-job-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.titan-spooler-status {
+  font-size: 14px;
+  font-weight: 600;
+  width: 16px;
+  text-align: center;
+}
+
+.titan-spooler-name {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-spooler-device {
+  font-size: 11px;
+  color: var(--titan-text-muted, #888);
+}
+
+.titan-spooler-job-details {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 24px;
+}
+
+.titan-spooler-meta {
+  font-size: 10px;
+  color: var(--titan-text-muted, #888);
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.titan-spooler-progress {
+  flex: 1;
+  height: 4px;
+  background: var(--titan-border, #333);
+  border-radius: 2px;
+  overflow: hidden;
+  min-width: 60px;
+}
+
+.titan-spooler-progress-bar {
+  height: 100%;
+  background: var(--titan-brand, #10b981);
+  transition: width 0.3s ease;
+}
+
+.titan-spooler-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--titan-text-muted, #888);
+  font-size: 12px;
+}
+
+/* Device Log Styles */
+.titan-device-log {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.titan-log-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--titan-bg-overlay, #2a2a2a);
+  border-bottom: 1px solid var(--titan-border, #333);
+}
+
+.titan-log-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-log-count {
+  font-size: 11px;
+  color: var(--titan-text-muted, #888);
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.titan-log-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 11px;
+}
+
+.titan-log-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--titan-border, #333);
+}
+
+.titan-log-entry:last-child {
+  border-bottom: none;
+}
+
+.titan-log-timestamp {
+  color: var(--titan-text-muted, #888);
+  min-width: 70px;
+}
+
+.titan-log-level {
+  font-weight: 600;
+  min-width: 50px;
+}
+
+.titan-log-source {
+  color: var(--titan-text-muted, #888);
+  min-width: 80px;
+}
+
+.titan-log-message {
+  flex: 1;
+  color: var(--titan-text, #e0e0e0);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.titan-log-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--titan-text-muted, #888);
+  font-size: 12px;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Hardware Diagnostics Styles */
+.titan-hardware-diagnostics {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.titan-diagnostics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--titan-bg-overlay, #2a2a2a);
+  border-bottom: 1px solid var(--titan-border, #333);
+}
+
+.titan-diagnostics-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-diagnostics-status {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.titan-diagnostics-device {
+  padding: 8px 12px;
+  background: var(--titan-bg, #141414);
+  border-bottom: 1px solid var(--titan-border, #333);
+}
+
+.titan-diagnostics-device-name {
+  font-size: 12px;
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-diagnostics-metrics {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+}
+
+.titan-diagnostic-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: var(--titan-bg, #141414);
+  border: 1px solid var(--titan-border, #333);
+  border-radius: 6px;
+}
+
+.titan-diagnostic-metric-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titan-diagnostic-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-diagnostic-status {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.titan-diagnostic-value {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.titan-diagnostic-number {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--titan-text, #e0e0e0);
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.titan-diagnostic-unit {
+  font-size: 11px;
+  color: var(--titan-text-muted, #888);
+}
+
+.titan-diagnostic-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.titan-diagnostic-range-min,
+.titan-diagnostic-range-max {
+  font-size: 10px;
+  color: var(--titan-text-muted, #888);
+  font-family: 'Consolas', 'Monaco', monospace;
+  min-width: 30px;
+  text-align: center;
+}
+
+.titan-diagnostic-range-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--titan-border, #333);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.titan-diagnostic-range-fill {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Engine Telemetry Styles */
+.titan-engine-telemetry {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.titan-telemetry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--titan-bg-overlay, #2a2a2a);
+  border-bottom: 1px solid var(--titan-border, #333);
+}
+
+.titan-telemetry-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--titan-text, #e0e0e0);
+}
+
+.titan-telemetry-count {
+  font-size: 11px;
+  color: var(--titan-text-muted, #888);
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.titan-telemetry-grid {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 8px;
+}
+
+.titan-telemetry-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: var(--titan-bg, #141414);
+  border: 1px solid var(--titan-border, #333);
+  border-radius: 6px;
+}
+
+.titan-telemetry-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--titan-border, #333);
+}
+
+.titan-telemetry-engine-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--titan-brand, #10b981);
+}
+
+.titan-telemetry-uptime {
+  font-size: 10px;
+  color: var(--titan-text-muted, #888);
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.titan-telemetry-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.titan-telemetry-metric {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.titan-telemetry-label {
+  font-size: 10px;
+  color: var(--titan-text-muted, #888);
+  min-width: 60px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.titan-telemetry-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--titan-border, #333);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.titan-telemetry-bar-fill {
+  height: 100%;
+  background: var(--titan-brand, #10b981);
+  transition: width 0.3s ease;
+}
+
+.titan-telemetry-value {
+  font-size: 11px;
+  color: var(--titan-text, #e0e0e0);
+  font-family: 'Consolas', 'Monaco', monospace;
+  min-width: 50px;
+  text-align: right;
+}
+
+.titan-telemetry-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.titan-telemetry-stat {
+  font-size: 10px;
+  color: var(--titan-text-muted, #888);
+  font-family: 'Consolas', 'Monaco', monospace;
+  background: var(--titan-bg-overlay, #2a2a2a);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* Scrollbar styling */
+.titan-spooler-list::-webkit-scrollbar,
+.titan-log-list::-webkit-scrollbar,
+.titan-diagnostics-metrics::-webkit-scrollbar,
+.titan-telemetry-grid::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.titan-spooler-list::-webkit-scrollbar-track,
+.titan-log-list::-webkit-scrollbar-track,
+.titan-diagnostics-metrics::-webkit-scrollbar-track,
+.titan-telemetry-grid::-webkit-scrollbar-track {
+  background: var(--titan-bg, #141414);
+}
+
+.titan-spooler-list::-webkit-scrollbar-thumb,
+.titan-log-list::-webkit-scrollbar-thumb,
+.titan-diagnostics-metrics::-webkit-scrollbar-thumb,
+.titan-telemetry-grid::-webkit-scrollbar-thumb {
+  background: var(--titan-border, #333);
+  border-radius: 4px;
+}
+
+.titan-spooler-list::-webkit-scrollbar-thumb:hover,
+.titan-log-list::-webkit-scrollbar-thumb:hover,
+.titan-diagnostics-metrics::-webkit-scrollbar-thumb:hover,
+.titan-telemetry-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--titan-text-muted, #555);
+}
