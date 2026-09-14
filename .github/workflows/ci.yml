@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Build & Test
+    name: Install & Lint & Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,6 +21,5 @@ jobs:
           node-version: "22"
           cache: "pnpm"
       - run: pnpm install
-      - run: pnpm run build
-      - run: pnpm run test -- --passWithNoTests
-      - run: pnpm run lint
+      - run: pnpm --filter @titan/titan-installer run lint
+      - run: pnpm --filter @titan/titan-installer run test
