@@ -2,9 +2,3 @@ node_modules/
 dist/
 .nx/
 *.turbo/
-*.exe
-*.dmg
-*.deb
-*.rpm
-*.AppImage
-releases/
