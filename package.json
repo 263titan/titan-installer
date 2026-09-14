@@ -1,1 +1,1 @@
-{"name":"titan-installer","private":true,"workspaces":["apps/*","libs/*"],"scripts":{"build":"pnpm --filter titan-installer run build","test":"pnpm --filter titan-installer run test","lint":"pnpm --filter titan-installer run lint"}}
+{"name":"titan-installer","private":true,"workspaces":["apps/*","libs/*"],"scripts":{"build":"pnpm --filter @titan/titan-installer run build","test":"pnpm --filter @titan/titan-installer run test","lint":"pnpm --filter @titan/titan-installer run lint"}}
